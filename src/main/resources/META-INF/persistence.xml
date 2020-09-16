@@ -1,0 +1,49 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd" version="2.2">
+	<persistence-unit name="jpa-hsqldb-ex">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		<class>com.leseanbruneau.hsqldb.jpa1.domain.JobCountHsqldbJPA</class>
+		<properties>
+			<property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver" />
+			<property name="openjpa.ConnectionURL" value="jdbc:hsqldb:hsql://localhost/jpasamplesdb" />
+			<property name="openjpa.ConnectionUserName" value="sa" />
+			<property name="openjpa.ConnectionPassword" value="" />
+			<property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="jpa-mysqldb-ex">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>		
+		<class>com.leseanbruneau.mysql.jpa1.domain.JobCountJPA</class>
+		<!-- Optional: JPA cache-mode - one of four values:  All, None, ENABLE_SELECTIVE, DISABLE_SELECTIVE -->
+		<!-- All - cache all JPA entities -->
+		<!-- None - turn off the shared cache -->
+		<!-- ENABLE_SELECTIVE - only cache entities with a @Cacheable annotation -->
+		<!-- DISABLE_SELECTIVE - cache all entities that do not specify @Cacheable(false) -->
+		<shared-cache-mode>ALL</shared-cache-mode>					
+		<properties>
+			<!-- driver, url, user and password properties are required -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/springbatchdemo?serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="DEMODBOWNER" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<!-- other properties below are optional -->
+			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+			<property name="javax.persistence.query.timeout" value="99" />
+			<property name="javax.persistence.lock.timeout" value="99" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="jpa-oracledb-ex">
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+		<properties>
+			<property name="openjpa.ConnectionDriverName" value="oracle.jdbc.OracleDriver" />
+			<property name="openjpa.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:XE" />
+			<property name="openjpa.ConnectionUserName" value="datascienceuser" />
+			<property name="openjpa.ConnectionPassword" value="" />
+			<property name="openjpa.jdbc.Schema" value="DATASCIENCEUSER"/>
+			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+		</properties>
+	</persistence-unit>
+	
+</persistence>
